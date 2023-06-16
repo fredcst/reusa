@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reusa!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div id="hero" class="container-fluid p-0 d-flex align-items-center">
+  <div class="container">
+    <div class="card w-50">
+      <div class="card-body p-4 shadow-sm">
+        <h2 class="card-title">¿Quieres hacer limpieza de armario?</h5>
+        <p class="card-text">Transforma tu limpieza de armario en una oportunidad para ganar dinero extra vendiendo prendas que ya no usas con estos consejos prácticos</p>
+        <a href="#" class="btn btn-success btn-lg">Vende ahora!</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row pb-0 pe-lg-0 align-items-center rounded-3 border shadow-lg bg-light">
+    <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+      <h1 class="display-4 fw-bold lh-1 mb-4">Reusa para salvar el planeta</h1>
+      <p class="lead">¿Estás buscando un estilo único y sostenible para tu guardarropa? ¡Has venido al lugar correcto! Nuestro héroe, el corazón de nuestra tienda, se dedica a buscar y seleccionar cuidadosamente las prendas más interesantes y de alta calidad para que puedas lucir siempre a la moda, sin sacrificar tu compromiso con el medio ambiente.</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+        <button type="button" class="btn btn-success btn-lg px-4 me-md-2 fw-bold">Primary</button>
+        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
+      </div>
+    </div>
+    <div class="col p-0 overflow-hidden shadow-lg">
+        <img class="rounded-lg" src="{{asset('images/envios.jpeg')}}" alt="" width="720">
+    </div>
+  </div>
+</div>
+{% endblock %}

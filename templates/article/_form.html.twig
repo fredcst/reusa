@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+<div class="my-4">
+  <div class="mb-3">
+    <label for="title" class="form-label">{{ form_label(form.title, 'Título') }}</label>
+    <input name="{{ field_name(form.title) }}" class="form-control" id="title" aria-describedby="titulo">
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">{{ form_label(form.description, 'Descripción') }}</label>
+    <textarea name="{{ field_name(form.description) }}" class="form-control" id="description" aria-describedby="descripcion"></textarea>
+  </div>
+  <label for="price" class="form-label">{{ form_label(form.description, 'Precio') }}</label>
+  <div class="input-group mb-3">
+    <span class="input-group-text">$</span>
+    <input name="{{ field_name(form.price) }}" class="form-control" id="price" aria-describedby="precio">
+  </div>
+  </div>
+  <button type="submit" class="btn btn-success">{{ button_label|default('Publicar') }}</button>
+{{ form_end(form) }}

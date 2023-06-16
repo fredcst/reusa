@@ -1,0 +1,23 @@
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+@import "~bootstrap/scss/bootstrap";
+
+body {
+  background-color: #f8f9fa;
+}
+.ghost-navbar {
+  content: " ";
+  position: relative;
+  display: block;
+  height: 96px;
+}
+
+#hero{
+  background-image: url('../../public/images/hero.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  display:inline-block;
+  min-height: 700px;
+  background-position: center;
+}
