@@ -3,36 +3,54 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" class="card-img-top" alt="Wild Landscape"/>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">
+                        {{ article.description }}
+                        </p>
+                        <p class="card-text">
+                        <small class="text-muted">Creado el: {{ article.createdAt|date('d-m-Y') }}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ article.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ article.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ article.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td>{{ article.price }}</td>
+                        </tr>
+                        <tr>
+                            <th>Is_active</th>
+                            <td>{{ article.isActive ? 'Yes' : 'No' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="btn btn-outline-success btn-md btn-block mb-2" href="{{ path('app_article_edit', {'id': article.id}) }}"><i class="bi bi-pen"></i> Editar artículo</a>
+                {{ include('article/_delete_form.html.twig') }}    
+            </div>
+        </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ article.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ article.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ article.price }}</td>
-            </tr>
-            <tr>
-                <th>Is_active</th>
-                <td>{{ article.isActive ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_article_index') }}">back to list</a>
-
-    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+        {% if article.createdBy == app.user %}
+            <a href="{{ path('app_article_index') }}">back to list</a>
+        {% endif %}
+    </div>
 {% endblock %}

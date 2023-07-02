@@ -1,21 +1,136 @@
 {{ form_start(form) }}
-    <div class="my-custom-class-for-errors">
-        {{ form_errors(form) }}
+  <div class="my-custom-class-for-errors">
+      {{ form_errors(form) }}
+  </div>
+  <div class="form-cont">
+
+    <div class="group" id="group1">
+      <div class="mb-3">
+        <label for="title" class="form-label">{{ form_label(form.title, 'Título') }}</label>
+        <input name="{{ field_name(form.title) }}" class="form-control" id="title" aria-describedby="titulo">
+      </div>
+      <button id="next1" type="button" class="btn btn-success">Siguiente</button>
     </div>
-<div class="my-4">
-  <div class="mb-3">
-    <label for="title" class="form-label">{{ form_label(form.title, 'Título') }}</label>
-    <input name="{{ field_name(form.title) }}" class="form-control" id="title" aria-describedby="titulo">
+
+    <div class="group" id="group2">
+      <div class="confirmation">
+        <div class="spinner-border"></div>
+        <input type="checkbox" id="check" name="confirmation"/>
+        <label for="check" class="label-form-check"> Confirmez vous ? </label>
+      </div>
+      <button id="back1" type="button" class="btn btn-secondary">Atrás</button>
+      <button id="next2" type="button" class="btn btn-success">Siguiente</button>
+    </div>
+
+    <div class="group" id="group3">
+      <div class="mb-3">
+        <label for="description" class="form-label">{{ form_label(form.description, 'Descripción') }}</label>
+        <textarea name="{{ field_name(form.description) }}" class="form-control" id="description" aria-describedby="descripcion"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">{{ form_label(form.description, 'Precio') }}</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text">$</span>
+          <input name="{{ field_name(form.price) }}" class="form-control" id="price" aria-describedby="precio">
+        </div>
+      </div>
+      <button id="back2" class="btn btn-secondary" type="button">Atrás</button>
+      {# <button type="submit" class="btn btn-success">{{ button_label|default('Publicar') }}</button> #}
+    </div>
+
   </div>
-  <div class="mb-3">
-    <label for="description" class="form-label">{{ form_label(form.description, 'Descripción') }}</label>
-    <textarea name="{{ field_name(form.description) }}" class="form-control" id="description" aria-describedby="descripcion"></textarea>
-  </div>
-  <label for="price" class="form-label">{{ form_label(form.description, 'Precio') }}</label>
-  <div class="input-group mb-3">
-    <span class="input-group-text">$</span>
-    <input name="{{ field_name(form.price) }}" class="form-control" id="price" aria-describedby="precio">
-  </div>
-  </div>
-  <button type="submit" class="btn btn-success">{{ button_label|default('Publicar') }}</button>
+
+<script>
+
+  //console.log("testing");
+
+  var group1 = document.querySelector("#group1");
+  var group2 = document.querySelector("#group2");
+  var group3 = document.querySelector("#group3");
+
+  var next1 = document.querySelector("#next1");
+  var next2 = document.querySelector("#next2");
+
+  var back1 = document.querySelector("#back1");
+  var back2 = document.querySelector("#back2");
+
+  next1.addEventListener('click', () => {
+    group1.style.left = "-450px";
+    group2.style.left = "0";
+  });
+  next2.addEventListener('click', () => {
+    group2.style.left = "-450px";
+    group3.style.left = "0";
+  });
+
+  back1.addEventListener('click', () => {
+    group1.style.left = "0";
+    group2.style.left = "450px";
+  });
+  back2.addEventListener('click', () => {
+    group2.style.left = "40px";
+    group3.style.left = "450px";
+  });
+
+</script>
+
 {{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# <div class="mt-4">
+  
+  <form>
+      <div class="my-custom-class-for-errors">
+          {{ form_errors(form) }}
+      </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <input name="{{ field_name(form.title) }}" type="text" id="title" aria-describedby="titulo" class="form-control" />
+      <label class="form-label" for="title">{{ form_label(form.title, 'Título') }}</label>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">$</span>
+      <input name="{{ field_name(form.price) }}" class="form-control" id="price" aria-describedby="precio">
+    </div>
+
+    <!-- Message input -->
+    <div class="form-outline mb-4">
+      <textarea name="{{ field_name(form.description) }}" class="form-control" id="form6Example7" rows="4"></textarea>
+      <label class="form-label" for="form6Example7">{{ form_label(form.description, 'Descripción') }}</label>
+    </div>
+
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-success btn-block mb-4">{{ button_label|default('Publicar') }}</button>
+  </form>
+  {{ form_end(form) }}
+</div> #}

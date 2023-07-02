@@ -26,6 +26,17 @@ class Article
     #[ORM\Column]
     private ?bool $isActive = null;
 
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?User $createdBy = null;
+
+    public function __construct(){
+        $this->setIsActive(true);
+        $this->setCreatedAt(new \DateTime('now'));
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +86,30 @@ class Article
     public function setIsActive(bool $isActive): static
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): static
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }

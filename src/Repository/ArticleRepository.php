@@ -39,6 +39,25 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * Search by category and/or term
+     *
+     * @return Product[]
+     */
+    public function search(?string $term)
+    {
+        $qb = $this->createQueryBuilder('product');
+
+        if ($term) {
+            $qb->andWhere('product.title LIKE :term OR product.description LIKE :term')
+                ->setParameter('term', '%'.$term.'%');
+        }
+
+        return $qb
+            ->getQuery()
+            ->execute();
+    }
+
 //    /**
 //     * @return Article[] Returns an array of Article objects
 //     */

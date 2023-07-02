@@ -3,27 +3,31 @@
 {% block title %}Mis artículos | Reusa {% endblock %}
 
 {% block body %}
-    <div class="container my-4 ">
+    <div class="container my-4 "
+        {{ stimulus_controller('reload-content', {
+            url: path('app_article_index', {ajax: '1'})
+        }) }}
+        data-action="modal-form:success->reload-content#refreshContent"
+        >
         <div class="d-flex align-items-center justify-content-between"> 
             <h1 class="mx-2">Mis artículos</h1>
-            <a class="btn btn-success btn-sm rounded-pill" href="{{ path('app_article_new') }}"><i class="bi bi-plus-circle-fill"></i> Añadir</a>
+            <div {{ stimulus_controller('modal-form', { 
+                    formUrl: path('app_article_new')
+                }) }} 
+                data-action="hidden.bs.modal->modal-form#modalHidden"
+            >
+                {# <a class="btn btn-success btn-sm rounded-pill" href="{{ path('app_article_new') }}"><i class="bi bi-plus-circle-fill"></i> Añadir</a> #}
+                <button class="btn btn-success btn-sm rounded-pill" data-action="modal-form#openModal"> <i class="bi bi-plus-circle-fill"></i> Añadir</button>
+                {{ include('_modal.html.twig', {
+                modalTitle: 'Agregar un nuevo producto',
+            }) }}
+            </div>
         </div>
-        <div class="d-flex my-2">
-            {% for item in articles %}
-                <div class="card m-2 shadow-sm cursor-pointer" style="width: 18rem;" onClick="window.location = '{{ path('app_article_show', {'id': item.id}) }}'"> 
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title">{{ item.title }}</h5>
-                            <p class="card-subtitle text-disabled"><i class="bi bi-suit-heart"></i> 0 </p>
-                        </div>
-                        <p class="card-text">{{ item.description }}</p>
-                        <p class="card-subtitle text-success">$ {{ item.price }}</p>
-                    </div>
-                </div>
-            {% else %}
-                <p>no records found</p>
-            {% endfor %}
+        <div data-reload-content-target="content">
+            
+             {{ include('article/_list.html.twig') }}
+            
+                
         </div>
     </div>
 {% endblock %}

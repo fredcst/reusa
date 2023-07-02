@@ -12,5 +12,8 @@ import "./styles/app.scss";
 import { Tooltip, Toast, Popover } from 'bootstrap';
 
 // start the Stimulus application
-import "./bootstrap";
+// import "./bootstrap";
 require("bootstrap-icons/font/bootstrap-icons.css");
+
+import * as mdb from 'mdb-ui-kit'; // lib
+import { Input } from 'mdb-ui-kit'; // module

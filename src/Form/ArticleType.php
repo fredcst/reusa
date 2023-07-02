@@ -15,7 +15,6 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('price')
-            ->add('isActive')
         ;
     }
 
